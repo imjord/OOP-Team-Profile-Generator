@@ -1,8 +1,15 @@
-const { expect } = require('@jest/globals')
-const Employee = require('../lib/Employee')
+const { expect } = require('@jest/globals');
+const Employee = require('../lib/Employee');
+
 
 
 test('should return employee for getRole()', () => {
-    expect(getRole()).toBe('Employee');
+
+    const e = new Employee("Fred", 1, "test@gmail.com")
+
+
+    expect(e.getRole()).toBe('Employee');
+    
+
     
 })
