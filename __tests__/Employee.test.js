@@ -1,15 +1,27 @@
-const { expect } = require('@jest/globals');
+
 const Employee = require('../lib/Employee');
 
 
 
-test('should return employee for getRole()', () => {
 
-    const e = new Employee("Fred", 1, "test@gmail.com")
+test('', () => {
+
+    const newEmployee = new Employee('Chris', 2, "chris@aol.com");
 
 
-    expect(e.getRole()).toBe('Employee');
+    expect(newEmployee.name).toBe('Chris');
+    expect(newEmployee.id).toEqual(expect.any(Number));
+    expect(newEmployee.email).toBe("chris@aol.com");
     
+    expect(typeof newEmployee.getName()).toBe('string');
+
+    expect(newEmployee.getId()).toEqual(expect.any(Number));
+    expect(newEmployee.getEmail()).toEqual
+    (expect.stringContaining(newEmployee.email.toString()
+    ));
+
+    expect(newEmployee.getRole()).toEqual('Employee');
+
 
     
 })
