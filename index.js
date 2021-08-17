@@ -5,6 +5,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const teamTemplate = require('./src/teamTemplate');
+const { writeFile } = require('./utils/generate-site');
 
 
 const teamInfo = [];
@@ -204,7 +205,7 @@ const addTeamMember = () => {
         } else if (answers.employeeType==="Intern") {
             internQuestions();
         } else {
-            fs.writeFileSync("index.html", teamTemplate(teamInfo))
+            return writeFile(teamInfo);
         }
     })
 }
