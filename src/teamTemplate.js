@@ -15,10 +15,10 @@ const teamIndexHtml = (data) => { return `
         <title>Team </title>
     </head>
     <body>
-    Manager Name ${Manager.name}
-    MAnager ID ${Manager.id}
-    Manager Email ${Manager.email}
-    Manager Office number ${Manager.office}
+    Manager Name ${Manager.managerName}
+    MAnager ID ${Manager.managerID}
+    answers Email ${Manager.managerEmail}
+    answers Office number ${Manager.managerOffice}
 
     </body>
     </html>
