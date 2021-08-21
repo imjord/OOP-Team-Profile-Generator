@@ -18,7 +18,7 @@ const engineerQuestions = ()=> {
             name: 'engineerName',
             message: 'What is your engineers name?',
             validate: engineerNameValidate => {
-                if(engineerName){
+                if(engineerNameValidate){
                     return true;
                 } else {
                     return "Please provide a engineer name"
@@ -30,7 +30,7 @@ const engineerQuestions = ()=> {
             name: 'engineerID',
             message: 'What is your team engineers id',
             validate: engineerIDValidate => {
-                if(engineerID){
+                if(engineerIDValidate){
                     return true;
                 } else {
                     return 'Please provide a engineer ID number!'
@@ -42,7 +42,7 @@ const engineerQuestions = ()=> {
             name: 'engineerEmail',
             message: 'What is your team engineers email?',
             validate: engineerEmailValidate => {
-                if(engineerEmail){
+                if(engineerEmailValidate){
                     return true;
                 } else {
                     return "Please provide engineer email!"
@@ -54,7 +54,7 @@ const engineerQuestions = ()=> {
             name: 'engineerGitHub',
             message: 'what is your engineers github',
             validate: engineerGitHubValidate => {
-                if(engineerGithub){
+                if(engineerGitHubValidate){
                     return true;
                 } else {
                     return "Please provide a engineer github!"
