@@ -212,7 +212,9 @@ const addTeamMember = () => {
         } else if (answers.employeeType ==="Manager") {
             managerQuestions();
         } else {
+            console.log(teamInfo);
             return writeFile(teamInfo);
+
         }
     })
 }
