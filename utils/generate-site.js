@@ -1,18 +1,31 @@
 
 const fs = require("fs");
+const path = require("path");
+const teamIndex = require("../src/teamTemplate");
 
 
 
 
-const writeFile = (fileContent) => {
-    fs.writeFile("../dist/index.html", fileContent, (err) => {
+
+// const writeIndex = () => {
+//     fs.writeFile("../dist/index.html", teamIndex(theAnswers), (err) => {
+//         if(err){
+//             return console.log(err);
+//         }
+//         return ({ ok: true, message: "File Written,"});
+//     } )
+// }
+
+
+
+
+const writeFile = (theAnswers) => {
+    fs.writeFile("./dist/index.html", teamIndex(theAnswers), (err) => {
         if(err){
-            rejects(err)
-            return;
+            return console.log(err);
         }
-        resolve({ ok: true, message: "File Written,"});
+        return ({ ok: true, message: "File Written,"});
     })
 }
-
 
 module.exports = { writeFile };

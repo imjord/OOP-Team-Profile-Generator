@@ -6,6 +6,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const teamTemplate = require('./src/teamTemplate');
 const { writeFile } = require('./utils/generate-site');
+const path = require("path");
 
 
 const teamInfo = [];
@@ -63,8 +64,8 @@ const engineerQuestions = ()=> {
         }
        
     ]).then((answers) => {
-        const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub)
-        teamInfo.push(engineer);
+        const engineerAnswers = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub)
+        teamInfo.push(engineerAnswers);
         addTeamMember();
     })
 
@@ -81,7 +82,7 @@ const managerQuestions = () => {
                 name: 'managerName',
                 message: 'What is your managers name?',
                 validate: managerNameValidate => {
-                    if(managerName){
+                    if(managerNameValidate){
                         return true;
                     } else {
                         return "Please provide a manager name"
@@ -93,7 +94,7 @@ const managerQuestions = () => {
                 name: 'managerID',
                 message: 'What is your team managers id',
                 validate: managerIDValidate => {
-                    if(managerID){
+                    if(managerIDValidate){
                         return true;
                     } else {
                         return 'Please provide a manager ID number!'
@@ -105,7 +106,7 @@ const managerQuestions = () => {
                 name: 'managerEmail',
                 message: 'What is your team managers email?',
                 validate: managerEmailValidate => {
-                    if(managerEmail){
+                    if(managerEmailValidate){
                         return true;
                     } else {
                         return "Please provide manager email!"
@@ -117,7 +118,7 @@ const managerQuestions = () => {
                 name: 'managerOffice',
                 message: 'what is your managers office number',
                 validate: managerOfficeValidate => {
-                    if(managerOffice){
+                    if(managerOfficeValidate){
                         return true;
                     } else {
                         return "Please provide a manager office number!"
@@ -127,8 +128,9 @@ const managerQuestions = () => {
             }
 
     ]).then((answers) => {
-        const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice)
-        teamInfo.push(manager);
+        const managerAnswers = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice)
+        teamInfo.push(managerAnswers);
+        console.log(managerAnswers);
         addTeamMember();
     })
 
@@ -141,7 +143,7 @@ const internQuestions = () => {
                 name: 'internName',
                 message: 'What is your interns name?',
                 validate: internNameValidate => {
-                    if(internName){
+                    if(internNameValidate){
                         return true;
                     } else {
                         return "Please provide a intern name"
@@ -153,7 +155,7 @@ const internQuestions = () => {
                 name: 'internID',
                 message: 'What is your team interns id',
                 validate: internIDValidate => {
-                    if(internID){
+                    if(internIDValidate){
                         return true;
                     } else {
                         return 'Please provide a intern ID number!'
@@ -165,7 +167,7 @@ const internQuestions = () => {
                 name: 'internEmail',
                 message: 'What is your team interns email?',
                 validate: internEmailValidate => {
-                    if(internEmail){
+                    if(internEmailValidate){
                         return true;
                     } else {
                         return "Please provide intern email!"
@@ -177,7 +179,7 @@ const internQuestions = () => {
                 name: 'internSchool',
                 message: 'what is your interns school',
                 validate: internSchoolValidate => {
-                    if(internSchool){
+                    if(internSchoolValidate){
                         return true;
                     } else {
                         return "Please provide a intern School!"
@@ -185,9 +187,11 @@ const internQuestions = () => {
                 }
         
             }.then((answers) => {
-                const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internEmail)
-                teamInfo.push(intern);
+                const internAnswers = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internEmail)
+                teamInfo.push(internAnswers);
+                console.log(answers);
                 addTeamMember();
+
             })
     ])
 } 
@@ -197,15 +201,20 @@ const addTeamMember = () => {
         type: "list", 
         name: "employeeType",
         message: "Which type of an employee would you like to add?",
-        choices: ["Engineer", "Intern", "None"]
+        choices: ["Manager", "Engineer", "Intern", "None"],
+        default: "Manager"
 
     }]).then((answers) => {
         if (answers.employeeType==="Engineer"){
             engineerQuestions();
         } else if (answers.employeeType==="Intern") {
             internQuestions();
+        } else if (answers.employeeType ==="Manager") {
+            managerQuestions();
         } else {
             return writeFile(teamInfo);
         }
     })
 }
+
+addTeamMember();
