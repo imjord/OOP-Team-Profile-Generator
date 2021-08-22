@@ -13,10 +13,10 @@ const teamIndexHtml = (data) => { console.log(data[0]); return `
         <title>Team </title>
     </head>
     <body>
-    Manager Name ${Manager.name}
-    MAnager ID ${data.id}
-    answers Email ${data.email}
-    answers Office number ${data.office}
+    Manager Name ${data[0].name}
+    Manager ID ${data[0].id}
+    Manager Email ${data[0].email}
+    Manager Office number ${data[0].office}
 
     </body>
     </html>
